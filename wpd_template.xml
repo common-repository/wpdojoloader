@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	Templates for WpDojoloader
+-->
+
+
+<templates>
+	
+	<!--
+	  this special template includes javascript into the page
+	-->
+	<template name="script">
+		<script type="script"><![CDATA[
+				function loadpost(id,targetid,uid,template,contentgroup)
+				{
+					var targetelem = jQuery('[uid = '+uid+']').find('[targetid = '+targetid+']')[0];
+					if (targetelem)
+					{
+						var cp = dijit.byId(targetelem.id);
+						if (cp)
+						{
+							var url = 'wp-content/plugins/wpdojoloader/ajax-load.php';
+							var and = String.fromCharCode(38);
+							url += '?id=' + id;
+							url += and + 'uid=' + uid;
+							url += and + 'template=' + template;
+							url += and + 'contentgroup=' + contentgroup;
+							url += and + 'PHPSESSID=' + gl_ssid; 		
+							setTimeout(cp.setHref(url, 3000));
+						}
+					}	
+				}
+				function wpd_sTo(mark,targetid,uid)
+				{
+					var targetelem = jQuery('[uid = '+uid+']').find('[targetid = '+targetid+']');
+					if (targetelem)
+					{
+						var st = targetelem.find('[mark = '+mark+']');
+						targetelem.scrollTo( st, 800, {axis: 'y'} );
+					}
+				}
+			]]></script>
+	</template>
+	
+	<template name="wpdsidebar">
+		<bordercontainer style="width:100%; height:300px;border:solid 1px black;" design="sidebar">
+			<contentpane region="left" style="width:100px;background-color:#d7d7d7">###left###</contentpane>
+			<contentpane region="top" style="background-color:#e7e7e7;">###head###</contentpane>
+			<contentpane region="center" targetid="rightcp" style="background-color:#f7f7f7;">###right###</contentpane>
+		</bordercontainer>
+	</template>
+	
+	<template name="wpdscreendesign">
+		<bordercontainer style="width:100%; height:300px;" design="screenDesign">
+			<contentpane region="top" style="text-align:center;vertical-align:middle;margin-top:0px !important;">###head###</contentpane>
+			<contentpane region="left" style="width:50%;background-color:#d7d7d7;">###left###</contentpane>
+			<contentpane region="center">###center###</contentpane>
+		</bordercontainer>
+	</template>
+	
+	
+	<!-- 
+		Below are some Samples from the homepage
+		the content is in testdata.xml
+	-->
+	<template name="accordion_example" uid="accordion1">
+		<accordioncontainer count="5" >
+		</accordioncontainer>	
+	</template>
+	
+	<template name="titlepane_example" uid="titlepane1">
+		<titlepane title="Titlepane1" open="false">###text1###</titlepane>
+		<titlepane title="Titlepane2" open="false">###text2###</titlepane>
+		<titlepane title="Titlepane3 with a post inside" open="false">###text3###</titlepane>		
+	</template>
+	
+	<template name="tabcontainer_example">
+		<box animation="fadein" style="width:95%;font-size:22px;opacity:0;text-align:center;">###head###</box>
+		<tabcontainer>
+			<contentpane title="This is the first tab">###text1###</contentpane>	
+			<!--
+			<contentpane title="Containing another post">
+				<post id="88"/>
+			</contentpane>
+			-->			
+			<contentpane title="Nested">
+				<tabcontainer>
+					<contentpane title="A Contentpane">###text2###</contentpane>
+					<contentpane title="A second Contentpane">###text3###</contentpane>
+				</tabcontainer>
+			</contentpane>
+		
+		</tabcontainer>	
+	</template>
+	
+	<template name="tab_example" uid="tabexample">
+		<tabcontainer>
+			<contentpane title="This is the first tab">###text1###</contentpane>	
+			<!--
+			<contentpane title="Containing another post">
+				<post id="88"/>
+			</contentpane>
+			-->			
+			<contentpane title="Nested">
+				<tabcontainer>
+					<contentpane title="A Contentpane">###text2###</contentpane>
+					<contentpane title="A second Contentpane">###text3###</contentpane>
+				</tabcontainer>
+			</contentpane>
+		
+		</tabcontainer>		
+	</template>
+	
+	<template name="datagrid_example">
+		<datagrid storetype="csv" style="width:100%; height:400px;" fieldnames="name,link" structurename="bookmarks" filename="bookmarks.csv" />
+		<!-- <datagrid storetype="xml" style="width:100%; height:400px;" fieldnames="name,link" structurename="bookmarks" filename="bookmarks.xml" /> -->
+	</template>
+	
+	
+	<template name="sidebar_example">
+		<bordercontainer style="width:100%; height:300px;border:solid 1px black;" design="sidebar">
+			<contentpane region="left" style="width:100px;background-color:#d7d7d7">###left###</contentpane>
+			<contentpane region="top" style="background-color:#e7e7e7;">###head###</contentpane>
+			<contentpane region="center" style="background-color:#f7f7f7;">
+				<accordioncontainer count="5" uid="accordion1">
+				</accordioncontainer>	
+			</contentpane>
+		</bordercontainer>		
+	</template>
+	
+	<template name="scrollpane_example">
+		<scrollpane orientation="vertical" style="width:100%; height:100px;border:solid 1px black;">###longtext###</scrollpane>	
+	</template>
+	
+	<template name="fisheye_example">
+		<div style="padding:10px;">
+			<fisheye>###fisheye###</fisheye>
+		</div>
+	</template>
+	
+	
+	<!-- Templates for the Documentation -->
+	<template name="doc_template">
+		<bordercontainer style="width:100%; height:300px;" design="screenDesign">
+			<contentpane region="top" style="text-align:center;vertical-align:middle;margin-top:0px !important;">###head###</contentpane>
+			<contentpane region="left" style="width:20%;background-color:#d7d7d7;">###doc_menu###</contentpane>
+			<contentpane targetid="rightcp" region="center">###center###</contentpane>
+		</bordercontainer>
+	</template>
+	
+	<template name="doc_template2">
+		<bordercontainer style="width:100%; height:600px;border:solid 1px black;" design="sidebar">
+			<contentpane region="left" style="width:100px;background-color:#d7d7d7">###left###</contentpane>
+			<contentpane region="top" style="background-color:#e7e7e7;">###head###</contentpane>
+			<contentpane region="center" targetid="rightcp" style="background-color:#f7f7f7;">###right###</contentpane>
+		</bordercontainer>
+	</template>
+	
+	<template name="doc_code">
+		<contentpane title="Nested">###code###</contentpane>
+	</template>
+	
+	<template name="jqtab_example">
+		<jquerytabcontainer>
+			<jquerytab>###text1###</jquerytab>
+			<jquerytab>###text2###</jquerytab>
+		</jquerytabcontainer>
+	</template>
+	
+	<template name="about">
+		<bordercontainer style="width:100%; height:540px;" design="screenDesign">
+			<contentpane region="top" style="text-align:center;vertical-align:middle;margin-top:0px !important;">###head###</contentpane>
+			<contentpane region="left" style="width:50%;background-color:#d7d7d7;">
+				<contentpane>###description1###</contentpane>
+				<box style="padding: 10px;">###description2###</box>
+				<box class="box" style="padding:10px;">###features###</box>				
+			</contentpane>
+			<contentpane region="center">###center###</contentpane>
+		</bordercontainer>		
+	</template>
+	
+</templates>

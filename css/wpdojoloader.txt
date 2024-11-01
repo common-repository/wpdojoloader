@@ -1,0 +1,18 @@
+/*
+  here you can make some stylesheet changes if needed
+*/
+
+/*
+*/
+.tundra .wpdojoloader_contentpane 
+{
+color: Black;
+}
+
+/*
+  change the font-size
+*/
+div.claro
+{
+  font-size:12px !important;
+}
